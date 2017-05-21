@@ -40,7 +40,7 @@ def reqparse(message): #handles either DHCPDiscover or DHCPRequest
         #DHCPOFFER creation:
         #options = \xcode \xlength \xdata
         lease=getlease(messagesplit[11])
-        print '{}\n{}'.format(lease, convert_macaddress(messagesplit[11]))
+        print('{}\n{}'.format(lease, convert_macaddress(messagesplit[11])))
         data='\x02\x01\x06\x00'+binascii.unhexlify(messagesplit[4])+'\x00\x04'
         data+='\x80\x00'+'\x00'*4+socket.inet_aton(lease)
         data+=socket.inet_aton(address)+'\x00'*4
@@ -75,7 +75,7 @@ def release(): #release a lease after timelimit has expired
           if time.time()+leasetime == leasetime:
               continue
           if lease[-1] > time.time()+leasetime:
-             print "Released",lease[0]
+             print("Released",lease[0])
              lease[1]=False
              lease[2]='000000000000'
              lease[3]=0
